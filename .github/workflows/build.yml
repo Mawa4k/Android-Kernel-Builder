@@ -51,8 +51,8 @@ jobs:
 
       - name: "⭐ Install prerequisites"
         run: |
-          sudo apt-get update -y
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential bc curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python3 python-is-python3 libarchive-tools
+          sudo apt-get update
+          sudo apt-get install -y build-essential bc curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python2 python3 libarchive-tools clang lld
 
       - name: "🌟 Clone kernel source => (${{ env.kernelRepo }})"
         working-directory: ./${{ env.kernelDir }}
@@ -64,17 +64,18 @@ jobs:
           toolchains: "${{ toJSON(matrix.repos.toolchains) }}"
         run: |
           toolchains_num="$(echo $toolchains | jq 'length')"
-          echo $toolchains_num
-          for ((i=0;i<toolchains_num;i++)); do
-            name=$(echo $toolchains | jq -r ".[$i].name")
-            repo=$(echo $toolchains | jq -r ".[$i].repo")
-            branch=$(echo $toolchains | jq -r ".[$i].branch")
-            git clone --branch $branch --single-branch $repo $name
-            echo "$(pwd)/$name/" >> $GITHUB_PATH
-            echo "$(pwd)/$name/bin" >> $GITHUB_PATH
-          done
-
-          echo "PATH Variable: $PATH"
+          if [ "$toolchains_num" -gt 0 ]; then
+            for ((i=0;i<toolchains_num;i++)); do
+              name=$(echo $toolchains | jq -r ".[$i].name")
+              repo=$(echo $toolchains | jq -r ".[$i].repo")
+              branch=$(echo $toolchains | jq -r ".[$i].branch")
+              git clone --branch $branch --single-branch $repo $name --depth=1
+              echo "$(pwd)/$name/" >> $GITHUB_PATH
+              echo "$(pwd)/$name/bin" >> $GITHUB_PATH
+            done
+          else
+            echo "No external toolchains specified, using system toolchain."
+          fi
 
       - name: "😎 Set args"
         id: generate-args
