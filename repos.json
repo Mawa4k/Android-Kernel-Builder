@@ -1,8 +1,8 @@
 [
   {
     "kernelSource": {
-      "name": "nethunter-r5x",
-      "repo": "https://github.com/mikhailsimon/nethunter-r5x-oss",
+      "name": "nethunter-r5x-graveyard",
+      "repo": "https://github.com/mikhailsimon/nethunter-r5x-graveyard",
       "branch": "main",
       "device": "r5x"
     },
