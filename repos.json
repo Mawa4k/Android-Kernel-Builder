@@ -1,9 +1,9 @@
 [
   {
     "kernelSource": {
-      "name": "nethunter-r5x-graveyard",
-      "repo": "https://github.com/mikhailsimon/nethunter-r5x-graveyard",
-      "branch": "main",
+      "name": "kernel_realme_r5x",
+      "repo": "https://github.com/kardebayan/kernel_realme_r5x",
+      "branch": "eleven",
       "device": "r5x"
     },
     "withKernelSU": false,
