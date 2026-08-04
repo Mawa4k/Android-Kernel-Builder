@@ -57,8 +57,7 @@ jobs:
       - name: "🌟 Clone kernel source => (${{ env.kernelRepo }})"
         working-directory: ./${{ env.kernelDir }}
         run: |
-          git clone --recursive --branch $kernelBranch $kernelRepo $kernelName --depth=1
-
+          git clone --branch $kernelBranch --single-branch $kernelRepo $kernelName
       - name: "💫 Get toolchains"
         working-directory: ./${{ env.kernelDir }}
         env:
@@ -70,7 +69,7 @@ jobs:
             name=$(echo $toolchains | jq -r ".[$i].name")
             repo=$(echo $toolchains | jq -r ".[$i].repo")
             branch=$(echo $toolchains | jq -r ".[$i].branch")
-            git clone --recursive --branch $branch $repo $name --depth=1
+            git clone --branch $branch --single-branch $repo $name
             echo "$(pwd)/$name/" >> $GITHUB_PATH
             echo "$(pwd)/$name/bin" >> $GITHUB_PATH
           done
