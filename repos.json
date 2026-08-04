@@ -7,13 +7,7 @@
       "device": "r5x"
     },
     "withKernelSU": false,
-    "toolchains": [
-      {
-        "name": "proton-clang",
-        "repo": "https://github.com/kdrag0n/proton-clang",
-        "branch": "master"
-      }
-    ],
+    "toolchains": [],
     "params": {
       "ARCH": "arm64",
       "CC": "clang",
