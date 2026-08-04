@@ -1,31 +1,24 @@
-[  {
+[
+  {
     "kernelSource": {
-      "name": "miku-KernelSU",
-      "repo": "https://github.com/PhamtomK12/kernel_xiaomi_odin",
-      "branch": "TDA",
-      "device": "odin"
+      "name": "nethunter-r5x",
+      "repo": "https://github.com/mikhailsimon/nethunter-r5x-oss",
+      "branch": "main",
+      "device": "r5x"
     },
-    "withKernelSU": true,
+    "withKernelSU": false,
     "toolchains": [
       {
-        "repo": "https://android.googlesource.com/platform/prebuilts/gas/linux-x86",
-        "branch": "master",
-        "name": "gas"
-      },
-      {
-        "repo": "https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone/",
-        "branch": "11",
-        "name": "clang"
+        "name": "proton-clang",
+        "repo": "https://github.com/kdrag0n/proton-clang",
+        "branch": "master"
       }
     ],
     "params": {
       "ARCH": "arm64",
+      "CC": "clang",
       "CROSS_COMPILE": "aarch64-linux-gnu-",
-      "CROSS_COMPILE_ARM32": "arm-linux-gnueabi-",
-      "CROSS_COMPILE_COMPAT": "arm-linux-gnueabi-",
-      "CLANG_TRIPLE": "aarch64-linux-gnu-",
-      "AR": "",
-      "CC": "clang"
+      "CROSS_COMPILE_ARM32": "arm-linux-gnueabi-"
     }
   }
 ]
